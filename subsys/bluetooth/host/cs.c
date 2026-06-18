@@ -332,7 +332,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete(struct net_buf *bu
 		remote_cs_capabilities.num_config_supported = evt->num_config_supported;
 		remote_cs_capabilities.max_consecutive_procedures_supported =
 			sys_le16_to_cpu(evt->max_consecutive_procedures_supported);
-		remote_cs_capabilities.num_antennas_supported = evt->num_antennas_supported;
+		remote_cs_capabilities.num_antennae_supported = evt->num_antennae_supported;
 		remote_cs_capabilities.max_antenna_paths_supported =
 			evt->max_antenna_paths_supported;
 
@@ -345,7 +345,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete(struct net_buf *bu
 
 		remote_cs_capabilities.rtt_aa_only_n = evt->rtt_aa_only_n;
 		remote_cs_capabilities.rtt_sounding_n = evt->rtt_sounding_n;
-		remote_cs_capabilities.rtt_random_payload_n = evt->rtt_random_payload_n;
+		remote_cs_capabilities.rtt_random_sequence_n = evt->rtt_random_sequence_n;
 
 		if (evt->rtt_aa_only_n) {
 			if (evt->rtt_capability & BT_HCI_LE_CS_RTT_AA_ONLY_N_10NS_MASK) {
@@ -373,7 +373,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete(struct net_buf *bu
 				BT_CONN_LE_CS_RTT_SOUNDING_NOT_SUPP;
 		}
 
-		if (evt->rtt_random_payload_n) {
+		if (evt->rtt_random_sequence_n) {
 			if (evt->rtt_capability & BT_HCI_LE_CS_RTT_RANDOM_PAYLOAD_N_10NS_MASK) {
 				remote_cs_capabilities.rtt_random_payload_precision =
 					BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS;
@@ -425,7 +425,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete(struct net_buf *bu
 		remote_cs_capabilities.tx_snr_capability = evt->tx_snr_capability;
 
 		remote_cs_capabilities.t_ip2_ipt_times_supported = 0;
-		remote_cs_capabilities.t_sw_ipt_time_supported = 0;
+		remote_cs_capabilities.t_sw_ipt_times_supported = 0;
 
 		bt_conn_notify_remote_cs_capabilities(conn, BT_HCI_ERR_SUCCESS,
 						      &remote_cs_capabilities);
@@ -466,7 +466,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete_v2(struct net_buf 
 	remote_cs_capabilities.num_config_supported = evt->num_config_supported;
 	remote_cs_capabilities.max_consecutive_procedures_supported =
 		sys_le16_to_cpu(evt->max_consecutive_procedures_supported);
-	remote_cs_capabilities.num_antennas_supported = evt->num_antennas_supported;
+	remote_cs_capabilities.num_antennae_supported = evt->num_antennae_supported;
 	remote_cs_capabilities.max_antenna_paths_supported =
 		evt->max_antenna_paths_supported;
 
@@ -479,7 +479,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete_v2(struct net_buf 
 
 	remote_cs_capabilities.rtt_aa_only_n = evt->rtt_aa_only_n;
 	remote_cs_capabilities.rtt_sounding_n = evt->rtt_sounding_n;
-	remote_cs_capabilities.rtt_random_payload_n = evt->rtt_random_payload_n;
+	remote_cs_capabilities.rtt_random_sequence_n = evt->rtt_random_sequence_n;
 
 	if (evt->rtt_aa_only_n) {
 		if (evt->rtt_capability & BT_HCI_LE_CS_RTT_AA_ONLY_N_10NS_MASK) {
@@ -507,7 +507,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete_v2(struct net_buf 
 			BT_CONN_LE_CS_RTT_SOUNDING_NOT_SUPP;
 	}
 
-	if (evt->rtt_random_payload_n) {
+	if (evt->rtt_random_sequence_n) {
 		if (evt->rtt_capability & BT_HCI_LE_CS_RTT_RANDOM_PAYLOAD_N_10NS_MASK) {
 			remote_cs_capabilities.rtt_random_payload_precision =
 				BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS;
@@ -564,7 +564,7 @@ void bt_hci_le_cs_read_remote_supported_capabilities_complete_v2(struct net_buf 
 
 	remote_cs_capabilities.t_ip2_ipt_times_supported =
 		sys_le16_to_cpu(evt->t_ip2_ipt_times_supported);
-	remote_cs_capabilities.t_sw_ipt_time_supported = evt->t_sw_ipt_time_supported;
+	remote_cs_capabilities.t_sw_ipt_times_supported = evt->t_sw_ipt_times_supported;
 
 	bt_conn_notify_remote_cs_capabilities(conn, BT_HCI_ERR_SUCCESS,
 					      &remote_cs_capabilities);
@@ -1176,7 +1176,7 @@ int bt_le_cs_read_local_supported_capabilities(struct bt_conn_le_cs_capabilities
 	ret->num_config_supported = rp->num_config_supported;
 	ret->max_consecutive_procedures_supported =
 		sys_le16_to_cpu(rp->max_consecutive_procedures_supported);
-	ret->num_antennas_supported = rp->num_antennas_supported;
+	ret->num_antennae_supported = rp->num_antennae_supported;
 	ret->max_antenna_paths_supported = rp->max_antenna_paths_supported;
 
 	ret->initiator_supported = rp->roles_supported & BT_HCI_LE_CS_INITIATOR_ROLE_MASK;
@@ -1185,7 +1185,7 @@ int bt_le_cs_read_local_supported_capabilities(struct bt_conn_le_cs_capabilities
 
 	ret->rtt_aa_only_n = rp->rtt_aa_only_n;
 	ret->rtt_sounding_n = rp->rtt_sounding_n;
-	ret->rtt_random_payload_n = rp->rtt_random_payload_n;
+	ret->rtt_random_sequence_n = rp->rtt_random_sequence_n;
 
 	if (rp->rtt_aa_only_n) {
 		if (rp->rtt_capability & BT_HCI_LE_CS_RTT_AA_ONLY_N_10NS_MASK) {
@@ -1207,7 +1207,7 @@ int bt_le_cs_read_local_supported_capabilities(struct bt_conn_le_cs_capabilities
 		ret->rtt_sounding_precision = BT_CONN_LE_CS_RTT_SOUNDING_NOT_SUPP;
 	}
 
-	if (rp->rtt_random_payload_n) {
+	if (rp->rtt_random_sequence_n) {
 		if (rp->rtt_capability & BT_HCI_LE_CS_RTT_RANDOM_PAYLOAD_N_10NS_MASK) {
 			ret->rtt_random_payload_precision = BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS;
 		} else {
@@ -1249,7 +1249,7 @@ int bt_le_cs_read_local_supported_capabilities(struct bt_conn_le_cs_capabilities
 	ret->tx_snr_capability = rp->tx_snr_capability;
 
 	ret->t_ip2_ipt_times_supported = 0;
-	ret->t_sw_ipt_time_supported = 0;
+	ret->t_sw_ipt_times_supported = 0;
 
 	net_buf_unref(rsp);
 	return status;
@@ -1274,7 +1274,7 @@ int bt_le_cs_read_local_supported_capabilities_v2(struct bt_conn_le_cs_capabilit
 	ret->num_config_supported = rp->num_config_supported;
 	ret->max_consecutive_procedures_supported =
 		sys_le16_to_cpu(rp->max_consecutive_procedures_supported);
-	ret->num_antennas_supported = rp->num_antennas_supported;
+	ret->num_antennae_supported = rp->num_antennae_supported;
 	ret->max_antenna_paths_supported = rp->max_antenna_paths_supported;
 
 	ret->initiator_supported = rp->roles_supported & BT_HCI_LE_CS_INITIATOR_ROLE_MASK;
@@ -1283,7 +1283,7 @@ int bt_le_cs_read_local_supported_capabilities_v2(struct bt_conn_le_cs_capabilit
 
 	ret->rtt_aa_only_n = rp->rtt_aa_only_n;
 	ret->rtt_sounding_n = rp->rtt_sounding_n;
-	ret->rtt_random_payload_n = rp->rtt_random_payload_n;
+	ret->rtt_random_sequence_n = rp->rtt_random_sequence_n;
 
 	if (rp->rtt_aa_only_n) {
 		if (rp->rtt_capability & BT_HCI_LE_CS_RTT_AA_ONLY_N_10NS_MASK) {
@@ -1305,7 +1305,7 @@ int bt_le_cs_read_local_supported_capabilities_v2(struct bt_conn_le_cs_capabilit
 		ret->rtt_sounding_precision = BT_CONN_LE_CS_RTT_SOUNDING_NOT_SUPP;
 	}
 
-	if (rp->rtt_random_payload_n) {
+	if (rp->rtt_random_sequence_n) {
 		if (rp->rtt_capability & BT_HCI_LE_CS_RTT_RANDOM_PAYLOAD_N_10NS_MASK) {
 			ret->rtt_random_payload_precision = BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS;
 		} else {
@@ -1351,7 +1351,7 @@ int bt_le_cs_read_local_supported_capabilities_v2(struct bt_conn_le_cs_capabilit
 	ret->tx_snr_capability = rp->tx_snr_capability;
 
 	ret->t_ip2_ipt_times_supported = sys_le16_to_cpu(rp->t_ip2_ipt_times_supported);
-	ret->t_sw_ipt_time_supported = rp->t_sw_ipt_time_supported;
+	ret->t_sw_ipt_times_supported = rp->t_sw_ipt_times_supported;
 
 	net_buf_unref(rsp);
 	return status;
@@ -1377,7 +1377,7 @@ int bt_le_cs_write_cached_remote_supported_capabilities(struct bt_conn *conn,
 	cp->max_consecutive_procedures_supported =
 		sys_cpu_to_le16(params->max_consecutive_procedures_supported);
 
-	cp->num_antennas_supported = params->num_antennas_supported;
+	cp->num_antennae_supported = params->num_antennae_supported;
 	cp->max_antenna_paths_supported = params->max_antenna_paths_supported;
 
 	cp->roles_supported = 0;
@@ -1395,7 +1395,7 @@ int bt_le_cs_write_cached_remote_supported_capabilities(struct bt_conn *conn,
 
 	cp->rtt_aa_only_n = params->rtt_aa_only_n;
 	cp->rtt_sounding_n = params->rtt_sounding_n;
-	cp->rtt_random_payload_n = params->rtt_random_payload_n;
+	cp->rtt_random_sequence_n = params->rtt_random_sequence_n;
 
 	cp->rtt_capability = 0;
 	if (params->rtt_aa_only_precision == BT_CONN_LE_CS_RTT_AA_ONLY_10NS) {
@@ -1475,7 +1475,7 @@ int bt_le_cs_write_cached_remote_supported_capabilities_v2(struct bt_conn *conn,
 	cp->max_consecutive_procedures_supported =
 		sys_cpu_to_le16(params->max_consecutive_procedures_supported);
 
-	cp->num_antennas_supported = params->num_antennas_supported;
+	cp->num_antennae_supported = params->num_antennae_supported;
 	cp->max_antenna_paths_supported = params->max_antenna_paths_supported;
 
 	cp->roles_supported = 0;
@@ -1493,7 +1493,7 @@ int bt_le_cs_write_cached_remote_supported_capabilities_v2(struct bt_conn *conn,
 
 	cp->rtt_aa_only_n = params->rtt_aa_only_n;
 	cp->rtt_sounding_n = params->rtt_sounding_n;
-	cp->rtt_random_payload_n = params->rtt_random_payload_n;
+	cp->rtt_random_sequence_n = params->rtt_random_sequence_n;
 
 	cp->rtt_capability = 0;
 	if (params->rtt_aa_only_precision == BT_CONN_LE_CS_RTT_AA_ONLY_10NS) {
@@ -1554,7 +1554,7 @@ int bt_le_cs_write_cached_remote_supported_capabilities_v2(struct bt_conn *conn,
 	cp->tx_snr_capability = params->tx_snr_capability;
 
 	cp->t_ip2_ipt_times_supported = sys_cpu_to_le16(params->t_ip2_ipt_times_supported);
-	cp->t_sw_ipt_time_supported = params->t_sw_ipt_time_supported;
+	cp->t_sw_ipt_times_supported = params->t_sw_ipt_times_supported;
 
 	return bt_hci_cmd_send_sync(
 		BT_HCI_OP_LE_CS_WRITE_CACHED_REMOTE_SUPPORTED_CAPABILITIES_V2,

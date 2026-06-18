@@ -576,7 +576,7 @@ struct bt_conn_le_cs_capabilities {
 	 */
 	uint16_t max_consecutive_procedures_supported;
 	/** Number of antennas. */
-	uint8_t num_antennas_supported;
+	uint8_t num_antennae_supported;
 	/** Maximum number of antenna paths. */
 	uint8_t max_antenna_paths_supported;
 	/** Initiator role. */
@@ -608,7 +608,7 @@ struct bt_conn_le_cs_capabilities {
 	 *
 	 * Set to 0 if RTT Random Payload isn't supported.
 	 */
-	uint8_t rtt_random_payload_n;
+	uint8_t rtt_random_sequence_n;
 	/** Phase-based normalized attack detector metric
 	 * when a CS_SYNC with sounding sequence is received.
 	 */
@@ -698,7 +698,7 @@ struct bt_conn_le_cs_capabilities {
 	 *  0x00, 0x01, 0x02, 0x04, or 0x0A - Time in microseconds for the
 	 *  antenna switch period of the CS tones
 	 */
-	uint8_t t_sw_ipt_time_supported;
+	uint8_t t_sw_ipt_times_supported;
 };
 
 /** Remote FAE Table for LE connections supporting CS */

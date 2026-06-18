@@ -2695,14 +2695,14 @@ struct bt_hci_rp_le_read_local_supported_capabilities {
 	uint8_t  status;
 	uint8_t  num_config_supported;
 	uint16_t max_consecutive_procedures_supported;
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	uint8_t  max_antenna_paths_supported;
 	uint8_t  roles_supported;
 	uint8_t  modes_supported;
 	uint8_t  rtt_capability;
 	uint8_t  rtt_aa_only_n;
 	uint8_t  rtt_sounding_n;
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	uint16_t nadm_sounding_capability;
 	uint16_t nadm_random_capability;
 	uint8_t  cs_sync_phys_supported;
@@ -2730,7 +2730,7 @@ struct bt_hci_rp_le_read_local_supported_capabilities_v2 {
 	/** Maximum consecutive procedures supported. */
 	uint16_t max_consecutive_procedures_supported;
 	/** Number of antennas supported. */
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	/** Maximum antenna paths supported. */
 	uint8_t  max_antenna_paths_supported;
 	/** Roles supported. */
@@ -2744,7 +2744,7 @@ struct bt_hci_rp_le_read_local_supported_capabilities_v2 {
 	/** RTT sounding N. */
 	uint8_t  rtt_sounding_n;
 	/** RTT random payload N. */
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	/** NADM sounding capability. */
 	uint16_t nadm_sounding_capability;
 	/** NADM random capability. */
@@ -2768,7 +2768,7 @@ struct bt_hci_rp_le_read_local_supported_capabilities_v2 {
 	/** T_IP2 IPT times supported. */
 	uint16_t  t_ip2_ipt_times_supported;
 	/** T_SW IPT time supported. */
-	uint8_t  t_sw_ipt_time_supported;
+	uint8_t  t_sw_ipt_times_supported;
 } __packed;
 
 #define BT_HCI_OP_LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES BT_OP(BT_OGF_LE, 0x008A) /* 0x208A */
@@ -2784,14 +2784,14 @@ struct bt_hci_cp_le_write_cached_remote_supported_capabilities {
 	uint16_t handle;
 	uint8_t  num_config_supported;
 	uint16_t max_consecutive_procedures_supported;
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	uint8_t  max_antenna_paths_supported;
 	uint8_t  roles_supported;
 	uint8_t  modes_supported;
 	uint8_t  rtt_capability;
 	uint8_t  rtt_aa_only_n;
 	uint8_t  rtt_sounding_n;
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	uint16_t nadm_sounding_capability;
 	uint16_t nadm_random_capability;
 	uint8_t  cs_sync_phys_supported;
@@ -2817,7 +2817,7 @@ struct bt_hci_cp_le_write_cached_remote_supported_capabilities_v2 {
 	/** Maximum consecutive procedures supported. */
 	uint16_t max_consecutive_procedures_supported;
 	/** Number of antennas supported. */
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	/** Maximum antenna paths supported. */
 	uint8_t  max_antenna_paths_supported;
 	/** Roles supported. */
@@ -2831,7 +2831,7 @@ struct bt_hci_cp_le_write_cached_remote_supported_capabilities_v2 {
 	/** RTT sounding N. */
 	uint8_t  rtt_sounding_n;
 	/** RTT random payload N. */
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	/** NADM sounding capability. */
 	uint16_t nadm_sounding_capability;
 	/** NADM random capability. */
@@ -2855,7 +2855,7 @@ struct bt_hci_cp_le_write_cached_remote_supported_capabilities_v2 {
 	/** T_IP2 IPT times supported. */
 	uint16_t  t_ip2_ipt_times_supported;
 	/** T_SW IPT time supported. */
-	uint8_t  t_sw_ipt_time_supported;
+	uint8_t  t_sw_ipt_times_supported;
 } __packed;
 
 #define BT_HCI_OP_LE_CS_SECURITY_ENABLE BT_OP(BT_OGF_LE, 0x008C) /* 0x208C */
@@ -4123,14 +4123,14 @@ struct bt_hci_evt_le_cs_read_remote_supported_capabilities_complete {
 	uint16_t conn_handle;
 	uint8_t  num_config_supported;
 	uint16_t max_consecutive_procedures_supported;
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	uint8_t  max_antenna_paths_supported;
 	uint8_t  roles_supported;
 	uint8_t  modes_supported;
 	uint8_t  rtt_capability;
 	uint8_t  rtt_aa_only_n;
 	uint8_t  rtt_sounding_n;
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	uint16_t nadm_sounding_capability;
 	uint16_t nadm_random_capability;
 	uint8_t  cs_sync_phys_supported;
@@ -4157,7 +4157,7 @@ struct bt_hci_evt_le_cs_read_remote_supported_capabilities_complete_v2 {
 	/** Maximum consecutive procedures supported. */
 	uint16_t max_consecutive_procedures_supported;
 	/** Number of antennas supported. */
-	uint8_t  num_antennas_supported;
+	uint8_t  num_antennae_supported;
 	/** Maximum antenna paths supported. */
 	uint8_t  max_antenna_paths_supported;
 	/** Roles supported. */
@@ -4171,7 +4171,7 @@ struct bt_hci_evt_le_cs_read_remote_supported_capabilities_complete_v2 {
 	/** RTT sounding N. */
 	uint8_t  rtt_sounding_n;
 	/** RTT random payload N. */
-	uint8_t  rtt_random_payload_n;
+	uint8_t  rtt_random_sequence_n;
 	/** NADM sounding capability. */
 	uint16_t nadm_sounding_capability;
 	/** NADM random capability. */
@@ -4195,7 +4195,7 @@ struct bt_hci_evt_le_cs_read_remote_supported_capabilities_complete_v2 {
 	/** T_IP2 IPT times supported. */
 	uint16_t t_ip2_ipt_times_supported;
 	/** T_SW IPT time supported. */
-	uint8_t  t_sw_ipt_time_supported;
+	uint8_t  t_sw_ipt_times_supported;
 } __packed;
 
 #define BT_HCI_EVT_LE_CS_READ_REMOTE_FAE_TABLE_COMPLETE 0x2D

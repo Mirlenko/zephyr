@@ -1087,7 +1087,7 @@ void print_remote_cs_capabilities(struct bt_conn *conn,
 		"- T_SW time supported: %d us\n"
 		"- TX SNR capability: 0x%02x",
 		params->num_config_supported, params->max_consecutive_procedures_supported,
-		params->num_antennas_supported, params->max_antenna_paths_supported,
+		params->num_antennae_supported, params->max_antenna_paths_supported,
 		params->initiator_supported ? "Yes" : "No",
 		params->reflector_supported ? "Yes" : "No", params->mode_3_supported ? "Yes" : "No",
 		params->rtt_aa_only_precision == BT_CONN_LE_CS_RTT_AA_ONLY_NOT_SUPP ? "No" : "Yes",
@@ -1103,7 +1103,7 @@ void print_remote_cs_capabilities(struct bt_conn *conn,
 		params->rtt_random_payload_precision == BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS
 			? "Yes"
 			: "No",
-		params->rtt_random_payload_n,
+		params->rtt_random_sequence_n,
 		params->phase_based_nadm_sounding_supported ? "Yes" : "No",
 		params->phase_based_nadm_random_supported ? "Yes" : "No",
 		params->cs_sync_2m_phy_supported ? "Yes" : "No",

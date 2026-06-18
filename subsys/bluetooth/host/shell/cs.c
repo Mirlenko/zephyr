@@ -490,7 +490,7 @@ static int cmd_read_local_supported_capabilities(const struct shell *sh, size_t 
 		"- T_SW time supported: %d us\n"
 		"- TX SNR capability: 0x%02x",
 		params.num_config_supported, params.max_consecutive_procedures_supported,
-		params.num_antennas_supported, params.max_antenna_paths_supported,
+		params.num_antennae_supported, params.max_antenna_paths_supported,
 		params.initiator_supported ? "Yes" : "No",
 		params.reflector_supported ? "Yes" : "No", params.mode_3_supported ? "Yes" : "No",
 		params.rtt_aa_only_precision == BT_CONN_LE_CS_RTT_AA_ONLY_NOT_SUPP ? "No" : "Yes",
@@ -504,7 +504,7 @@ static int cmd_read_local_supported_capabilities(const struct shell *sh, size_t 
 			: "Yes",
 		params.rtt_random_payload_precision == BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS ? "Yes"
 											     : "No",
-		params.rtt_random_payload_n,
+		params.rtt_random_sequence_n,
 		params.phase_based_nadm_sounding_supported ? "Yes" : "No",
 		params.phase_based_nadm_random_supported ? "Yes" : "No",
 		params.cs_sync_2m_phy_supported ? "Yes" : "No",
@@ -533,7 +533,7 @@ static int cmd_write_cached_remote_supported_capabilities(const struct shell *sh
 
 	params.num_config_supported = 1;
 	params.max_consecutive_procedures_supported = 0;
-	params.num_antennas_supported = 1;
+	params.num_antennae_supported = 1;
 	params.max_antenna_paths_supported = 1;
 	params.initiator_supported = true;
 	params.reflector_supported = true;
@@ -543,7 +543,7 @@ static int cmd_write_cached_remote_supported_capabilities(const struct shell *sh
 	params.rtt_random_payload_precision = BT_CONN_LE_CS_RTT_RANDOM_PAYLOAD_10NS;
 	params.rtt_aa_only_n = 5;
 	params.rtt_sounding_n = 6;
-	params.rtt_random_payload_n = 7;
+	params.rtt_random_sequence_n = 7;
 	params.phase_based_nadm_sounding_supported = true;
 	params.phase_based_nadm_random_supported = true;
 	params.cs_sync_2m_phy_supported = true;
